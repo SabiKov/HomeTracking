@@ -1,6 +1,7 @@
 package com.sabi11.hometracking.controller;
 
 
+import com.sabi11.hometracking.exception.ApiRequestException;
 import com.sabi11.hometracking.model.User;
 import com.sabi11.hometracking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,11 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @GetMapping
+    public List<User> getAllUser() {
+        throw new ApiRequestException("oops exception happened for reason!");
+    }
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> get() {
