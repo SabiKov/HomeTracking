@@ -20,6 +20,7 @@ public class UserController {
 
     @GetMapping
     public List<User> getAllUser() {
+
         throw new ApiRequestException("oops exception happened for reason!");
     }
 
