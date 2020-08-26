@@ -3,6 +3,8 @@ package com.sabi11.hometracking.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -13,21 +15,31 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "user_id", length=12, nullable = false, unique = true)
     private long userId;
     @Column(name = "status")
     private boolean status;
-    @Column(name = "email")
+    @NotEmpty(message = "E-mail address is mandatory field. Please provide an e-mail")
+    @Column(name = "email", length = 70, nullable = false)
     private String email;
-    @Column(name = "first_name")
+    @Size(min=2, message = "First name should have at least 2 characters")
+    @NotEmpty(message = "First name is mandatory field. Please provide a first name")
+    @Column(name = "first_name", length = 140, nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @Size(min=2, message = "Last name should have at least 2 characters")
+    @NotEmpty(message = "Last name is mandatory field. Please provide a last name")
+    @Column(name = "last_name", length = 140, nullable = false)
     private String lastName;
-    @Column(name = "password")
+    @Size(min=4, message = "Password should have at least 4 characters")
+    @NotEmpty(message = "Password is mandatory field. Please provide a password")
+    @Column(name = "password", length = 16,  nullable = false)
     private String password;
-    @Column(name = "user_name")
+    @Size(min=2, message = "User name should have at least 4 characters")
+    @NotEmpty(message = "User name is mandatory field. Please provide a user name")
+    @Column(name = "user_name", length = 30, nullable = false)
     private String userName;
-    @Column(name = "role")
+    @NotEmpty(message = "Role is mandatory field. Please provide a role")
+    @Column(name = "role", length = 16, nullable = false)
     private String role;
     @Column(name = "unsuccess_login")
     private String unsuccessLogin;
