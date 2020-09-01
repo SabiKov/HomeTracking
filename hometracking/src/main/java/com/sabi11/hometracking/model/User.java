@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 
 @Entity
@@ -61,4 +62,10 @@ public class User {
     @Column(name = "success_login")
     private String successLogin;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn(name="user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName = "role_id")})
+    private List<Role> roles;
 }
