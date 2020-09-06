@@ -17,7 +17,7 @@ public class HomeController {
     @GetMapping
     public String home(Model model) {
         model.addAttribute("msgs", messageRepository.findAll());
-        return "userHome";
+        return "userhome";
     }
 
     @PostMapping
